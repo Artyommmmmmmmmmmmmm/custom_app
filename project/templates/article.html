@@ -1,0 +1,18 @@
+
+<h1>{{ articledetail.author }}</h1>
+<h1>{{ articledetail.title }}</h1>
+<h3>{{ articledetail.text|safe }}</h3>
+{{ test }}
+<form method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="оставить отклик">
+</form>
+
+{% for i in articledetail.comments.all %}
+    <p>
+        {{ i.author }}
+        {{ i.text }}
+    </p>
+{% endfor %}
+<a href="/articles">на главную</a>

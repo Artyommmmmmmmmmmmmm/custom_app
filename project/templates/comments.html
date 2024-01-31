@@ -1,0 +1,35 @@
+
+<form action="" method="get">
+    {% csrf_token %}
+    {{filterset.form.as_p}}
+    <input type="submit" value="найти">
+</form>
+<table>
+    <tr>
+        <td>автор отклика</td>
+        <td>автор статьи</td>
+        <td>отклик на:</td>
+        <td>содержание</td>
+    </tr>
+
+{% for com in commentlist %}
+    <tr>
+
+    {% if request.user == com.article.author %}
+        <td>{{ com.author }}</td>
+        <td>{{ com.article.author }}</td>
+        <td>{{ com.article }}</td>
+        <td>{{ com.text }}</td>
+        {% if com.replied %}
+            <td>подтверждён</td>
+        {% else %}
+            <td>{{com.replied}}</td>
+            <td><a href="reply/{{com.id}}">подтвердить</a></td>
+        {% endif %}
+        <td><a href="delete/{{com.id}}">удалить</a></td>
+    {% endif %}
+    </tr>
+{% endfor %}
+</table>
+
+<a href="/articles">на главную</a>

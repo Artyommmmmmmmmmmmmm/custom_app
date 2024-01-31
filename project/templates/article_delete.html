@@ -1,0 +1,7 @@
+<h1>Удаление товара</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Удалить "{{ object.title }}"?</p>
+    <input type="submit" value="Delete" />
+</form>

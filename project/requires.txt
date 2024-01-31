@@ -1,0 +1,4 @@
+django = 5.0.1
+django-allauth = 0.60.1
+django-ckeditor = 6.7.0
+django-filter = 23.5

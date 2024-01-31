@@ -1,0 +1,26 @@
+
+{{ request.user }}
+
+<table>
+    <tr>
+        <td>название</td>
+        <td>автор</td>
+    </tr>
+
+    {% for ar in articlelist %}
+    <tr>
+        <td>{{ ar.title }}</td>
+        <td>{{ ar.author }}</td>
+        <td><a href="{{ar.id}}">Подробно</a></td>
+        <td><a href="change/{{ar.id}}">изменить</a></td>
+        <td><a href="delete/{{ar.id}}">удалить</a></td>
+        <td><a href="comments/{{ar.id}}">просмотреть отклики</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if request.user.is_authenticated %}
+    <a href="/accounts/logout">logout</a><br>
+{% endif %}
+<a href="comments/{{request.user.id}}">посмотреть отклики на ваши посты</a><br>
+<a href="add/">создать пост</a>
